@@ -50,14 +50,14 @@
   border-radius: 30px;
   overflow: hidden;
   padding: 2%;
-  background: rgb(200, 203, 212);
+  background: black;
 }
 
 .flex-child {
   float: left;
   width: 48%;
   height: 96%;
-  background: rgb(118, 192, 214);
+  background: rgb(231, 229, 229);
   margin: 1%;
   padding: 2%;
   border-radius: 10px;
@@ -68,7 +68,12 @@
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  /* border: blue solid 1px; */
+}
+
+.form-inline-nowrap {
+  display: flex;
+  align-items: center;
+  flex-flow: row;
 }
 
 .form-inline label {

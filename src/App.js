@@ -4,15 +4,17 @@ import '@momentum-ui/core/css/momentum-ui.min.css';
 import './App.css';
 
 export default function App() {
+    const [token, setToken] = useState('');
+    const [destination, setDestination] = useState('');
   
+
   return (
       <div>
           <header className='App-header'>
           {/* <h1 className='header'>Meetings Widget Demo</h1> */}
           <div className='outerDiv'>
                 <div className='flex-child'>
-                    left div
-                    <div className='form-inline'>
+                    <div >
                     
                     <Input
                         name='Access Token'
@@ -20,6 +22,8 @@ export default function App() {
                         htmlId='defaultInput'
                         inputSize='small-10'
                         placeholder='access token'
+                        value={token}
+                        onChange={(event) => setToken(event.target.value)}
                     />
                     <Input
                         name='Meeting Destination'
@@ -27,6 +31,8 @@ export default function App() {
                         htmlId='defaultInput'
                         inputSize='small-10'
                         placeholder='meeting destination ID'
+                        value={destination}
+                        onChange={(event) => setDestination(event.target.value)}
                     />
                     
                     </div>
@@ -41,7 +47,7 @@ export default function App() {
                                             value='mute-audioInMeeting'
                                             label='mute-audio'
                                             htmlId='testCheckbox1'
-                                            onChange={() => { }}
+                                            onChange={(event) => console.log(event.target.value)}
                                         />
                                         <Checkbox
                                             value='mute-videoInMeeting'
@@ -139,31 +145,27 @@ export default function App() {
                     </div> 
                     <div>
                         Layout
-                        <div >
+                        <div className='form-inline-nowrap'>
                             <Input
                                 name='width'
                                 label='Width'
                                 htmlId='defaultInput3'
-                                inputSize='small-2'
+                                inputSize='small-5'
                                 placeholder='width'
                             />
                             <Input
                                 name='height'
                                 label='Height'
                                 htmlId='defaultInpu4'
-                                inputSize='small-2'
+                                inputSize='small-5'
                                 placeholder='height'
                             />
                         </div>
-                    </div>
-                    
-                    
-                    
-                    
-                    
+                    </div>    
                 </div>
                 <div className='flex-child'>
                     right div
+                    
                     
               </div>
           </div>

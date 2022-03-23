@@ -7,6 +7,9 @@ const {version} = require('./package.json');
 module.exports = function(env, argv) {
   return {
     cache: true,
+    entry: {
+        app: ["./src/index.js", path.resolve(__dirname, './src/index.scss')]
+    }, 
     mode: 'development',
     output:
       argv.mode === 'production'
