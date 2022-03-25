@@ -6,7 +6,28 @@ import './App.css';
 export default function App() {
     const [token, setToken] = useState('');
     const [destination, setDestination] = useState('');
+    const [width, setWidth] = useState('');
+    const [height, setHeight] = useState('');
+    const [muteAudioIM, setMuteAudioIM] = useState(false);
+    const [muteVideoIM, setMuteVideoIM] = useState(false);
+    const [settingsIM, setSettingsIM] = useState(false);
+    const [shareScreenIM, setShareScreenIM] = useState(false);
+    const [leaveMeetingIM, setLeaveMeetingIM] = useState(false);
+    const [memberRoasterIM, setMemberRoasterIM] = useState(false);
+    const [muteAudioIC, setMuteAudioIC] = useState(false);
+    const [muteVideoIC, setMuteVideoIC] = useState(false);
+    const [settingsIC, setSettingsIC] = useState(false);
+    const [joinMeetingIC, setJoinMeetingIC] = useState(false);
+
   
+    function handleChange(event) {
+        console.log(muteAudioIM)
+    }
+
+    function toggle(value) {
+        console.log(!value)
+        return !value;
+    }
 
   return (
       <div>
@@ -14,7 +35,7 @@ export default function App() {
           {/* <h1 className='header'>Meetings Widget Demo</h1> */}
           <div className='outerDiv'>
                 <div className='flex-child'>
-                    <div >
+                    <div>
                     
                     <Input
                         name='Access Token'
@@ -44,33 +65,33 @@ export default function App() {
                                 <div>
                                     <CheckboxGroup name='CheckboxGroup1'>
                                         <Checkbox
-                                            value='mute-audioInMeeting'
+                                            value='mute-audio-im'
                                             label='mute-audio'
                                             htmlId='testCheckbox1'
-                                            onChange={(event) => console.log(event.target.value)}
+                                            onClick={() => setMuteAudioIM(toggle)}
                                         />
                                         <Checkbox
-                                            value='mute-videoInMeeting'
+                                            value='mute-video-im'
                                             label='mute-video'
                                             htmlId='testCheckbox2'
-                                            onChange={() => { }}
+                                            onClick={() => setMuteVideoIM(toggle)}
                                         />   
                                     </CheckboxGroup>
                                 </div>
-
+                                
                                 <div>
                                 <CheckboxGroup name='CheckboxGroup2'>
                                         <Checkbox
-                                            value='settingsInMeeting'
+                                            value='settings-im'
                                             label='settings'
                                             htmlId='testCheckbox3'
-                                            onChange={() => { }}
+                                            onClick={() => setSettingsIM(toggle)}
                                         />
                                         <Checkbox
-                                            value='share-screenInMeeting'
+                                            value='share-screen-im'
                                             label='share-screen'
                                             htmlId='testCheckbox4'
-                                            onChange={() => { }}
+                                            onClick={() => setShareScreenIM(toggle)}
                                         />  
                                     </CheckboxGroup>
                                 </div>
@@ -78,16 +99,16 @@ export default function App() {
                                 <div>
                                     <CheckboxGroup name='CheckboxGroup3'>  
                                         <Checkbox
-                                            value='leave-meetingInMeeting'
+                                            value='leave-meeting-im'
                                             label='leave-meeting'
                                             htmlId='testCheckbox5'
-                                            onChange={() => { }}
+                                            onClick={() => setLeaveMeetingIM(toggle)}
                                         />
                                         <Checkbox
-                                            value='member-roasterInMeeting'
+                                            value='member-roaster-im'
                                             label='member-roaster'
                                             htmlId='testCheckbox6'
-                                            onChange={() => { }}
+                                            onClick={() => setMemberRoasterIM(toggle)}
                                         />     
                                     </CheckboxGroup>
                                 </div>
@@ -101,16 +122,16 @@ export default function App() {
                                 <div>
                                 <CheckboxGroup name='CheckboxGroup4'>
                                     <Checkbox
-                                        value='mute-audioInterstitial'
+                                        value='mute-audio-ic'
                                         label='mute-audio'
                                         htmlId='testCheckbox7'
-                                        onChange={() => { }}
+                                        onClick={() => setMuteAudioIC(toggle)}
                                     />
                                     <Checkbox
-                                        value='mute-videoInterstitial'
+                                        value='mute-video-ic'
                                         label='mute-video'
                                         htmlId='testCheckbox8'
-                                        onChange={() => { }}
+                                        onClick={() => setMuteVideoIC(toggle)}
                                     />
                                 </CheckboxGroup>
 
@@ -118,16 +139,16 @@ export default function App() {
                                 <div>
                                     <CheckboxGroup name='CheckboxGroup5'>
                                         <Checkbox
-                                            value='settingsInterstitial'
+                                            value='settings-ic'
                                             label='settings'
                                             htmlId='testCheckbox9'
-                                            onChange={() => { }}
+                                            onClick={() => setSettingsIC(toggle)}
                                         />
                                         <Checkbox
-                                            value='join-meetingInterstitial'
+                                            value='join-meeting-ic'
                                             label='join-meeting'
                                             htmlId='testCheckbox10'
-                                            onChange={() => { }}
+                                            onClick={() => setJoinMeetingIC(toggle)}
                                         />   
                                     </CheckboxGroup>
                                 </div>
@@ -138,7 +159,7 @@ export default function App() {
                         Theme
                         <div className='form-inline'>   
                             <Select defaultValue='Select Item Here' >
-                                <SelectOption value='light' label='light' />
+                                <SelectOption value='light' label='light' onChange={(event) => console.log(event.target.value)}/>
                                 <SelectOption value='dark' label='dark' />
                             </Select>
                         </div>
@@ -152,6 +173,7 @@ export default function App() {
                                 htmlId='defaultInput3'
                                 inputSize='small-5'
                                 placeholder='width'
+                                onChange={(event) => setWidth(event.target.value)}
                             />
                             <Input
                                 name='height'
@@ -159,13 +181,13 @@ export default function App() {
                                 htmlId='defaultInpu4'
                                 inputSize='small-5'
                                 placeholder='height'
+                                onChange={(event) => setHeight(event.target.value)}
                             />
                         </div>
                     </div>    
                 </div>
                 <div className='flex-child'>
                     right div
-                    
                     
               </div>
           </div>
