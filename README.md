@@ -1,1 +1,1 @@
-# MeetingsWidgetCodeGenerator COMING SOON! 
+# COMING SOON! 
