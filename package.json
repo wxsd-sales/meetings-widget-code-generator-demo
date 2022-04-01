@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve  --hot --open",
+    "start": "webpack serve",
     "build": "webpack --config webpack.config.js --mode production"
   },
   "repository": {
@@ -20,19 +26,26 @@
   "homepage": "https://github.com/NivethaJayakumar/demo-app#readme",
   "dependencies": {
     "@momentum-ui/react": "^23.25.0",
+    "@webex/widgets": "^1.25.0",
     "clean-webpack-plugin": "^4.0.0",
+    "crypto-browserify": "^3.12.0",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "fs": "^0.0.1-security",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "http-browserify": "^1.7.0",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
     "path": "^0.12.7",
-    "prop-types": "^15.8.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react-code-blocks": "0.0.9-0",
     "sass-loader": "^12.6.0",
+    "stream-browserify": "^3.0.0",
     "style-loader": "^3.3.1",
-    "webex": "^1.156.2",
+    "url": "^0.11.0",
+    "webex": "^1.157.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
   },
@@ -42,6 +55,8 @@
     "@babel/preset-react": "^7.16.7",
     "babel-loader": "^8.2.3",
     "node-sass": "^7.0.1",
+    "react-error-overlay": "^6.0.9",
+    "react-dom": "^17.0.2",
     "sass": "^1.49.9",
     "webpack": "^5.70.0"
   }

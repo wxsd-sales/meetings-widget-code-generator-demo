@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
 import {Select, SelectOption, Input, Checkbox, CheckboxGroup} from '@momentum-ui/react';
 import '@momentum-ui/core/css/momentum-ui.min.css';
-import './App.css';
+import {CodeBlock, tomorrow, a11yDark, googlecode} from "react-code-blocks";
+import './App.scss';
+
+import {WebexMeetingsWidget} from '@webex/widgets';
+
+import '@webex/widgets/dist/css/webex-widgets.css';
 
 export default function App() {
     const [token, setToken] = useState('');
@@ -19,7 +24,31 @@ export default function App() {
     const [settingsIC, setSettingsIC] = useState(false);
     const [joinMeetingIC, setJoinMeetingIC] = useState(false);
 
-  
+    const code =
+    `<html>
+        <head>
+            <title>Webex Widget Demo</title>
+            <link href="https://cdn.jsdelivr.net/gh/WXSD-Sales/MeetingWidget/docs/webex-widgets.css" />
+            <script src="https://cdn.jsdelivr.net/gh/WXSD-Sales/MeetingWidget/docs/bundle.js"></script>
+        </head>
+
+        <body>
+            <div id="meeting-widget"></div>
+            <script>
+                webexMeetingWidget({accessToken: "${token}",
+                meetingDestination: "${destination}",
+                theme:"light",
+                width:"${width}",
+                height:"${height}",
+                layout:"Grid",
+                inMeetingControls:['mute-audio','leave-meeting'],
+                interstitialControls:['join-meeting']});
+            </script>
+        </body>
+    </html>`;
+
+    const myControls = (inMeeting) => inMeeting ? ['leave-meeting'] : ['join-meeting'];
+
     function handleChange(event) {
         console.log(muteAudioIM)
     }
@@ -185,14 +214,29 @@ export default function App() {
                             />
                         </div>
                     </div>    
+                    <div className="code">
+                    <CodeBlock
+                        text={code}
+                        language={"html"}
+                        showLineNumbers={false}
+                        theme={tomorrow}
+                        wraplines
+                    />
+                    </div>
                 </div>
+                
                 <div className='flex-child'>
-                    right div
-                    
-              </div>
-          </div>
-          </header>
-      </div>
-  );
+                <WebexMeetingsWidget
+                    style={{width: `${width}`, height: `${height}`,minWidth:"600px",minHeight:"500px"}} // Substitute with any arbitrary size or use `className`
+                    accessToken={token}
+                    meetingDestination={destination}
+                    className={`webex-meeting-widget-demo wxc-theme-${theme}`}
+                    layout={layout}
+                />
+                </div>
+            </div>
+            </header>
+        </div>
+    );
 }
 

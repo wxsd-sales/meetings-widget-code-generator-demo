@@ -10,13 +10,12 @@
   margin: 1rem;
 }
 
-
 .webex-section {
   background-color: white;
   margin: 1rem 0;
-  padding: .5rem 1rem;
-  box-shadow: 0 0.0625rem 0.125rem 0 #C6C7CA;
-  border-radius: .25rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0.0625rem 0.125rem 0 #c6c7ca;
+  border-radius: 0.25rem;
 }
 
 .flex-column {
@@ -28,16 +27,14 @@
   flex: 1;
 }
 
-
 .App-header {
   background-image: url(../assets/webex-bg-image.png);
   background-size: cover;
-    background-position: top;
-    min-height: 100%;
-    height: 100vh;
-    position: relative;
+  background-position: top;
+  min-height: 100%;
+  height: 100vh;
+  position: relative;
 }
-
 
 .outerDiv {
   font-size: 35px;
@@ -60,6 +57,7 @@
   background: rgb(231, 229, 229);
   margin: 1%;
   padding: 2%;
+  overflow-y: auto;
   border-radius: 10px;
   font-size: 18px;
 }
@@ -78,4 +76,26 @@
 
 .form-inline label {
   margin: 5px 10px 5px 0;
+}
+
+.code {
+  display: none;
+
+  @media (min-height: 38rem) {
+    display: block;
+    height: 15rem;
+  }
+
+  @media (min-height: 55rem) {
+    display: block;
+    height: 30rem;
+  }
+
+  overflow-y: auto;
+
+  code {
+    width: 100%;
+    font-size: 0.75rem !important;
+    background-color: lightgrey;
+  }
 }

@@ -11,6 +11,7 @@ module.exports = function(env, argv) {
         app: ["./src/index.js", path.resolve(__dirname, './src/index.scss')]
     }, 
     mode: 'development',
+    target: "web",
     output:
       argv.mode === 'production'
         ? {
@@ -26,6 +27,22 @@ module.exports = function(env, argv) {
     devtool: argv.mode === 'production' ? 'source-map' : 'inline-source-map',
     resolve: {
       extensions: ['.js', '.jsx'],
+      fallback: {
+        stream: require.resolve("stream-browserify"),
+        crypto: require.resolve("crypto-browserify"),
+        http: require.resolve("http-browserify"),
+        https: require.resolve("https-browserify"),
+        os: require.resolve("os-browserify/browser"),
+        fs: false,
+        zlib: false,
+        symlinks: false,
+        util: false,
+        url: false,
+        querystring: false
+      },
+      alias: {
+        process: "process/browser"
+    },
     },
     module: {
       rules: [
@@ -72,23 +89,23 @@ module.exports = function(env, argv) {
             contentBase: path.resolve(__dirname, './src'),
             open: true,
             overlay: true,
-            hot: true,
             port: 9000,
             stats: 'errors-warnings',
             https: true,
           }
         : undefined,
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')}),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'public/index.html',
         favicon: 'public/webex-logo.png',
       }),
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.DefinePlugin({
-        __appVersion__: JSON.stringify(version)
-      })
+      new webpack.ProvidePlugin({
+        process: path.resolve(path.join(__dirname, "node_modules/process/browser")),
+      }),
     ],
   };
 };
