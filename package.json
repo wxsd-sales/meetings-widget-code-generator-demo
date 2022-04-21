@@ -1,7 +1,7 @@
 {
   "name": "meetings-widget-demo",
   "version": "1.0.0",
-  "homepage": "https://rajithabk.github.io/meetings-widget-demo/",
+  "homepage": "https://rajithabk.github.io/meetings-widget-demo",
   "eslintConfig": {
     "env": {
       "browser": true,
