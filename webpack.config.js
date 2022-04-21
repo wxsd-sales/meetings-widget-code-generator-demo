@@ -81,6 +81,10 @@ module.exports = function(env, argv) {
             },
           ],
         },
+        {
+          test: /\.webp$/,
+          use: ['file-loader', 'webp-loader'],
+        },
       ],
     },
     devServer:

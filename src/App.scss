@@ -39,11 +39,11 @@
 .outerDiv {
   font-size: 35px;
   position: absolute;
-  width: 90%;
-  height: 84%;
+  width: 95%;
+  height: 95%;
   z-index: 15;
-  top: 8%;
-  left: 5%;
+  top: 3%;
+  left: 3%;
   border-radius: 30px;
   overflow: hidden;
   padding: 2%;
@@ -57,7 +57,7 @@
   background: rgb(231, 229, 229);
   margin: 1%;
   padding: 2%;
-  overflow-y: auto;
+  overflow: auto;
   border-radius: 10px;
   font-size: 18px;
 }
@@ -80,6 +80,7 @@
 
 .code {
   display: none;
+  margin: 2%;
 
   @media (min-height: 38rem) {
     display: block;
@@ -98,4 +99,16 @@
     font-size: 0.75rem !important;
     background-color: lightgrey;
   }
+}
+
+.button {
+  border: none;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 15px;
+  cursor: pointer;
+  border-radius: 12px;
 }
