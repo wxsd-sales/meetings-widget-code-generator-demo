@@ -1,8 +1,7 @@
 {
-  "name": "demo-app",
+  "name": "meetings-widget-demo",
   "version": "1.0.0",
-  "description": "",
-  "main": "webpack.config.js",
+  "homepage": "https://rajithabk.github.io/meetings-widget-demo/",
   "eslintConfig": {
     "env": {
       "browser": true,
@@ -14,16 +13,6 @@
     "start": "webpack serve",
     "build": "webpack --config webpack.config.js --mode production"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NivethaJayakumar/demo-app.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NivethaJayakumar/demo-app/issues"
-  },
-  "homepage": "https://rajithabk.github.io/meetings-widget-demo/",
   "dependencies": {
     "@momentum-ui/react": "^23.25.0",
     "@webex/widgets": "^1.25.0",
