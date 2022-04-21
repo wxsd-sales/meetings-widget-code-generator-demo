@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/NivethaJayakumar/demo-app/issues"
   },
-  "homepage": "https://github.com/NivethaJayakumar/demo-app#readme",
+  "homepage": "https://rajithabk.github.io/meetings-widget-demo/",
   "dependencies": {
     "@momentum-ui/react": "^23.25.0",
     "@webex/widgets": "^1.25.0",
