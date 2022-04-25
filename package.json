@@ -1,7 +1,7 @@
 {
-  "name": "demo-widget",
+  "name": "meetings-widget-code-generator-demo",
   "version": "1.0.0",
-  "homepage": "https://rajithabk.github.io/demo-widget",
+  "homepage": "https://wxsd-sales.github.io/meetings-widget-code-generator-demo/",
   "eslintConfig": {
     "env": {
       "browser": true,
