@@ -1,2 +1,2 @@
-"use strict";(self.webpackChunkmeetings_widget_demo=self.webpackChunkmeetings_widget_demo||[]).push([[1438],{60274:e=>{function t(e){e.languages.arff={comment:/%.*/,string:{pattern:/(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,greedy:!0},keyword:/@(?:attribute|data|end|relation)\b/i,number:/\b\d+(?:\.\d+)?\b/,punctuation:/[{},]/}}e.exports=t,t.displayName="arff",t.aliases=[]}}]);
+"use strict";(self.webpackChunkdemo_widget=self.webpackChunkdemo_widget||[]).push([[1438],{60274:e=>{function t(e){e.languages.arff={comment:/%.*/,string:{pattern:/(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,greedy:!0},keyword:/@(?:attribute|data|end|relation)\b/i,number:/\b\d+(?:\.\d+)?\b/,punctuation:/[{},]/}}e.exports=t,t.displayName="arff",t.aliases=[]}}]);
 //# sourceMappingURL=1438.bundle.js.map

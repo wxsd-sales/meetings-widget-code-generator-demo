@@ -1,2 +1,2 @@
-"use strict";(self.webpackChunkmeetings_widget_demo=self.webpackChunkmeetings_widget_demo||[]).push([[6495],{14970:e=>{function t(e){e.languages.ini={comment:/^[ \t]*[;#].*$/m,selector:/^[ \t]*\[.*?\]/m,constant:/^[ \t]*[^\s=]+?(?=[ \t]*=)/m,"attr-value":{pattern:/=.*/,inside:{punctuation:/^[=]/}}}}e.exports=t,t.displayName="ini",t.aliases=[]}}]);
+"use strict";(self.webpackChunkdemo_widget=self.webpackChunkdemo_widget||[]).push([[6495],{14970:t=>{function e(t){t.languages.ini={comment:/^[ \t]*[;#].*$/m,selector:/^[ \t]*\[.*?\]/m,constant:/^[ \t]*[^\s=]+?(?=[ \t]*=)/m,"attr-value":{pattern:/=.*/,inside:{punctuation:/^[=]/}}}}t.exports=e,e.displayName="ini",e.aliases=[]}}]);
 //# sourceMappingURL=6495.bundle.js.map
