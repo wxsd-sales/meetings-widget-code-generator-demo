@@ -43,8 +43,10 @@ export default function App() {
     const [settingsIC, setSettingsIC] = useState(false);
     const [joinMeetingIC, setJoinMeetingIC] = useState(false);
     const [arrNew, setArrNew] = useState([]);
+    const [arrNew2, setArrNew2] = useState([]);
     const [customizationState, setCustomizationState]= useState(false);
     const [arrNewIC, setArrNewIC] = useState([]);  
+    const [arrNewIC2, setArrNewIC2] = useState([]);  
     const [accessToken, setAccessToken] = useState('');
     const [destinationToken, setDestinationToken] = useState('');
     const [draggable, setDraggable] = useState(true);
@@ -67,8 +69,8 @@ export default function App() {
                 width:"${width}",
                 height:"${height}",
                 layout:"${layout}",
-                inMeetingControls:[${arrNew}],
-                interstitialControls:[${arrNewIC}]});
+                inMeetingControls:[${arrNew2}],
+                interstitialControls:[${arrNewIC2}]});
             </script>
         </body>
     </html>`;
@@ -157,29 +159,36 @@ export default function App() {
       };
 
     function arraySetter(checkboxValue, checkboxName, setFn) {
-        let meetingControls = arrNew
-        checkboxName = checkboxName.substring(0, checkboxName.length - 3);
+        let meetingControls1 = arrNew
+        let meetingControls2= arrNew2
+        let checkboxName2 = "'"+checkboxName.substring(0, checkboxName.length - 3)+"'";
+        let checkboxName1 = checkboxName.substring(0, checkboxName.length - 3);
         if(checkboxValue) {
-            meetingControls.push(checkboxName)
+            meetingControls1.push(checkboxName1)
+            meetingControls2.push(checkboxName2)
         } else {
-            meetingControls = meetingControls.filter(val => val != (checkboxName))
+            meetingControls1 = meetingControls1.filter(val => val != (checkboxName1))
+            meetingControls2 = meetingControls2.filter(val => val != (checkboxName2))
         }
-        setArrNew(meetingControls)
+        setArrNew(meetingControls1)
+        setArrNew2(meetingControls2)
         setFn((checkboxValue) => !checkboxValue)
     }
 
     function arraySetterIC(checkboxValue, checkboxName, setFnIC) {
-        console.log(checkboxName)
-        console.log(checkboxValue)
-        let interstitialControls = arrNewIC
-        checkboxName = checkboxName.substring(0, checkboxName.length - 3);
+        let interstitialControls1 = arrNewIC
+        let interstitialControls2 = arrNewIC2
+        let checkboxName2 = "'"+checkboxName.substring(0, checkboxName.length - 3)+"'";
+        let checkboxName1 = checkboxName.substring(0, checkboxName.length - 3);
         if(checkboxValue) {
-            interstitialControls.push(checkboxName)
+            interstitialControls1.push(checkboxName1)
+            interstitialControls2.push(checkboxName2)
         } else {
-            console.log('inside filter IC')
-            interstitialControls = interstitialControls.filter(val => val != (checkboxName))
+            interstitialControls1 = interstitialControls1.filter(val => val != (checkboxName1))
+            interstitialControls2 = interstitialControls2.filter(val => val != (checkboxName2))
         }
-        setArrNewIC(interstitialControls)
+        setArrNewIC(interstitialControls1)
+        setArrNewIC2(interstitialControls2)
         setFnIC((checkboxValue) => !checkboxValue)
     }
 
@@ -551,14 +560,13 @@ export default function App() {
                 </div>
                 
                 <div className='flex-child'>
-                    {console.log("controls->"+controls)}
                     {accessToken && destinationToken?(
                     <div>
                         {draggable?(
                     <Draggable>
                     <div className="WebexMeeting">
                     <WebexMeetingsWidget
-                        style={{width:`${width}`,height:`${height}`,minWidth:"600px",minHeight:"500px"}} // Substitute with any arbitrary size or use `className`
+                        style={{width:`${width}`,height:`${height}`,minWidth:"600px",minHeight:"500px",maxWidth:"unset"}} // Substitute with any arbitrary size or use `className`
                         accessToken={accessToken}
                         meetingDestination={destinationToken}
                         className={`webex-meeting-widget-demo wxc-theme-${theme2}`}
@@ -568,8 +576,8 @@ export default function App() {
                     </div>
                     </Draggable>):(
                         <div className="WebexMeeting">
-                        <WebexMeetingsWidget
-                            style={{width:`${width}`,height:`${height}`,minWidth:"600px",minHeight:"500px"}} // Substitute with any arbitrary size or use `className`
+                        <WebexMeetingsWidget 
+                            style={{width:`${width}`,height:`${height}`,minWidth:"600px",minHeight:"500px",maxWidth:"unset"}} // Substitute with any arbitrary size or use `className`
                             accessToken={accessToken}
                             meetingDestination={destinationToken}
                             className={`webex-meeting-widget-demo wxc-theme-${theme2}`}

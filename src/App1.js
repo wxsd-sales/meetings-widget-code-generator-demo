@@ -54,8 +54,8 @@ export default function App() {
                 width:"${width}",
                 height:"${height}",
                 layout:"${layout}",
-                inMeetingControls:[${arrNew}],
-                interstitialControls:[${arrNewIC}]});
+                inMeetingControls:['${arrNew}'],
+                interstitialControls:['${arrNewIC}']});
             </script>
         </body>
     </html>`;
