@@ -1,5 +1,18 @@
 import React, {useState} from 'react';
-import {Select, SelectOption, Input, Checkbox, CheckboxGroup, Button} from '@momentum-ui/react';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import Button from '@mui/material/Button';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import FormGroup from '@mui/material/FormControl';
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { styled } from '@mui/material/styles';
+import Switch, { SwitchProps } from '@mui/material/Switch';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import '@momentum-ui/core/css/momentum-ui.min.css';
 import Draggable from 'react-draggable';
 import {CodeBlock, tomorrow, a11yDark, googlecode} from "react-code-blocks";
@@ -14,7 +27,8 @@ export default function App() {
     var controls=null;
     const [token, setToken] = useState('');
     const [layout, setLayout] = useState('Grid');
-    const [theme, setTheme] = useState('dark');
+    const [theme, setTheme] = useState(true);
+    const [theme2,setTheme2]= useState('dark');
     const [destination, setDestination] = useState('');
     const [width, setWidth] = useState('');
     const [height, setHeight] = useState('');
@@ -48,7 +62,7 @@ export default function App() {
             <script>
                 webexMeetingWidget({accessToken: "${accessToken}",
                 meetingDestination: "${destinationToken}",
-                theme:"${theme}",
+                'theme:"${theme2}",
                 draggable:"${draggable}",
                 width:"${width}",
                 height:"${height}",
@@ -61,6 +75,53 @@ export default function App() {
 
     const myControls = (inMeeting) => inMeeting ? ['leave-meeting'] : ['join-meeting'];
 
+    const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+        width: 62,
+        height: 34,
+        padding: 7,
+        '& .MuiSwitch-switchBase': {
+          margin: 1,
+          padding: 0,
+          transform: 'translateX(6px)',
+          '&.Mui-checked': {
+            color: '#fff',
+            transform: 'translateX(22px)',
+            '& .MuiSwitch-thumb:before': {
+              backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
+                '#fff',
+              )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
+            },
+            '& + .MuiSwitch-track': {
+              opacity: 1,
+              backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+            },
+          },
+        },
+        '& .MuiSwitch-thumb': {
+          backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
+          width: 32,
+          height: 32,
+          '&:before': {
+            content: "''",
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            left: 0,
+            top: 0,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
+              '#fff',
+            )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
+          },
+        },
+        '& .MuiSwitch-track': {
+          opacity: 1,
+          backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+          borderRadius: 20 / 2,
+        },
+      }));
+
     function handleSubmit() {
         setAccessToken(token)
         setDestinationToken(destination)
@@ -71,13 +132,27 @@ export default function App() {
         return !value;
     }
 
-    const handleChangeTheme = (selectedOptions) => {
-        const selectedTheme = selectedOptions[0].value;
+    const handleChangeTheme = (event) => {
+        const selectedTheme = event.target.checked;
+        if(selectedTheme==true)
+        {
+            setTheme2('dark');
+        }
+        else
+        {
+            setTheme2('light');
+        }
         setTheme(selectedTheme);
       };
 
-    const handleChangeLayout = (selectedOptions) => {
-        const selectedLayout = selectedOptions[0].value;
+      const handleChangeDraggable = (event) => {
+        const selectedDragabble = event.target.checked;
+        console.log("selectedDragabble",selectedDragabble)
+        setDraggable(selectedDragabble);
+      };
+
+      const handleChangeLayout = (event) => {
+        const selectedLayout = event.target.value;
         setLayout(selectedLayout);
       };
 
@@ -182,61 +257,74 @@ export default function App() {
                     <div>
                         {/* {console.log( "IM -> " + arrNew)}
                         {console.log( "IC -> " + arrNewIC)} */}
-
-                        <Input
-                            name='Access Token'
-                            label='Access Token'
-                            htmlId='defaultInput'
-                            inputSize='small-10'
-                            placeholder='access token'
+                        <FormControl fullWidth sx={{ m: 1 }} variant="standard">
+                        <TextField
+                            required
+                            id="outlined-required"
+                            label="Access Token"
+                            placeholder='Access Token'
                             value={token}
                             onChange={(event) => setToken(event.target.value)}
                         />
-                        <Input
-                            name='Meeting Destination'
-                            label='Meeting Destination'
-                            htmlId='defaultInput'
-                            inputSize='small-10'
-                            placeholder='meeting destination ID'
+                        </FormControl>
+                        <FormControl fullWidth sx={{ m: 1 }} variant="standard">
+                        <TextField
+                            required
+                            id="outlined-required"
+                            label="Meeting Destination"
+                            placeholder='Meeting Destination'
                             value={destination}
                             onChange={(event) => setDestination(event.target.value)}
                         />
-                        <Button
-                            children='Submit'
-                            ariaLabel='Test'
-                            color='blue'
-                            onClick={handleSubmit}
-                        />
+                        </FormControl>
+                        <Box
+                            component="form"
+                            sx={{
+                                '& > :not(style)': { m: 1},
+                            }}
+                            noValidate
+                            autoComplete="off"
+                        >
+                        <Button variant="contained" onClick={handleSubmit}>Submit</Button>
                         {customizationState?(
                         <Button
-                            children='Hide Customization Options'
-                            ariaLabel='Test'
-                            color='blue'
+                            variant="contained"
                             onClick={() => setCustomizationState(false)}
-                        />):(
+                        >Hide Customization Options</Button>):(
                         <Button
-                            children='Show Customization Options'
-                            ariaLabel='Test'
-                            color='blue'
+                            variant="contained"
                             onClick={() => setCustomizationState(true)}
-                        />)}
+                        >Show Customization Options</Button>)}
+                        </Box>
                     
                     </div>
+                    <Box
+                            component="form"
+                            sx={{
+                                '& > :not(style)': { m: 1},
+                            }}
+                            noValidate
+                            autoComplete="off"
+                        >
                     {customizationState?(
-                        <div>
-                    <div className='form-inline'>
-                        <div>
-                            Layout
-                        <div>
-                        <Select defaultValue="Grid" onSelect={handleChangeLayout}>
-                            <SelectOption value="Overlay" label="Overlay" />
-                            <SelectOption value="Grid" label="Grid" />
-                            <SelectOption value="Stack" label="Stack" />
-                            <SelectOption value="Prominent" label="Prominent" />
-                            <SelectOption value="Focus" label="Focus" />
-                        </Select>
-                        </div>
-                        </div>
+                    <div>
+                        <div className='form-inline'>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Layout</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={layout}
+                                    label="Layout"
+                                    onChange={handleChangeLayout}
+                                >
+                                    <MenuItem value="Overlay">Overlay</MenuItem>
+                                    <MenuItem value="Grid">Grid</MenuItem>
+                                    <MenuItem value="Stack">Stack</MenuItem>
+                                    <MenuItem value="Prominent">Prominent</MenuItem>
+                                    <MenuItem value="Focus">Focus</MenuItem>
+                                </Select>
+                            </FormControl>
                     </div>
                     <div className='form-inline'>
                         <div>
@@ -244,69 +332,84 @@ export default function App() {
                         InMeeting Controls
                             <div className='form-inline'>
                                 <div>
-                                <CheckboxGroup name='CheckboxGroup1'>
-                                        <Checkbox
-                                            value='mute-audio-im'
-                                            name='meeting-controls'
-                                            label='mute-audio'
-                                            htmlId='testCheckbox1'
-                                            checked={muteAudioIM}
-                                            onClick={(event)=> {
-                                                samplefn(event);
-                                            }}
-                                        />
-                                        <Checkbox
-                                            value='mute-video-im'
-                                            name='meeting-controls'
-                                            label='mute-video'
-                                            htmlId='testCheckbox2'
-                                            checked={muteVideoIM}
-                                            onClick={(event)=> {
-                                                samplefn(event);
-                                            }}
-                                        />   
-                                    </CheckboxGroup>
+                                <FormGroup>
+                                    <FormControlLabel
+                                        label="mute-audio"
+                                        control={
+                                            <Checkbox
+                                                value='mute-audio-im'
+                                                checked={muteAudioIM}
+                                                onChange={(event)=> {
+                                                    samplefn(event);
+                                                }}
+                                            />
+                                        }
+                                    />
+                                    <FormControlLabel
+                                        label="mute-video"
+                                        control={
+                                            <Checkbox
+                                                value='mute-video-im'
+                                                checked={muteVideoIM}
+                                                onChange={(event)=> {
+                                                    samplefn(event);
+                                                }}
+                                            />
+                                        }
+                                    />
+                                </FormGroup>
                                 </div>
                                 <div>
-                                <CheckboxGroup name='CheckboxGroup2'>
-                                        <Checkbox
-                                            value='settings-im'
-                                            label='settings'
-                                            htmlId='testCheckbox3'
-                                            onClick={(event)=> {
-                                                samplefn(event);
-                                            }}
-                                        />
-                                        <Checkbox
-                                            value='share-screen-im'
-                                            label='share-screen'
-                                            htmlId='testCheckbox4'
-                                            onClick={(event)=> {  
-                                                samplefn(event);
-                                            }}
-                                        />  
-                                    </CheckboxGroup>
+                                <FormGroup>
+                                    <FormControlLabel
+                                        label="settings"
+                                        control={
+                                            <Checkbox
+                                                value='settings-im'
+                                                onChange={(event)=> {
+                                                    samplefn(event);
+                                                }}
+                                            />
+                                        }
+                                    />
+                                    <FormControlLabel
+                                        label="Share Screen"
+                                        control={
+                                            <Checkbox
+                                                value='share-screen-im'
+                                                onChange={(event)=> {
+                                                    samplefn(event);
+                                                }}
+                                            />
+                                        }
+                                    />
+                                </FormGroup>
                                 </div>
-
                                 <div>
-                                <CheckboxGroup name='CheckboxGroup3'>  
-                                        <Checkbox
-                                            value='leave-meeting-im'
-                                            label='leave-meeting'
-                                            htmlId='testCheckbox5'
-                                            onClick={(event)=> {
-                                                samplefn(event);
-                                            }}
-                                        />
-                                        <Checkbox
-                                            value='member-roaster-im'
-                                            label='member-roaster'
-                                            htmlId='testCheckbox6'
-                                            onClick={(event)=> {
-                                                samplefn(event);
-                                            }}
-                                        />     
-                                    </CheckboxGroup>
+                                <FormGroup>
+                                    <FormControlLabel
+                                        label="Leave Meeting"
+                                        control={
+                                            <Checkbox
+                                                value='leave-meeting-im'
+                                                onChange={(event)=> {
+                                                    samplefn(event);
+                                                }}
+                                            />
+                                        }
+                                    />
+                                    <FormControlLabel
+                                        label="Member Roster"
+                                        control={
+                                            <Checkbox
+                                                value='member-roaster-im'
+                                                onChange={(event)=> {
+                                                    samplefn(event);
+                                                }}
+                                            />
+                                        }
+                                    />
+                                </FormGroup>
                                 </div>
                             </div>
                         </div>  
@@ -316,91 +419,126 @@ export default function App() {
                         Interstitial Controls
                             <div className="form-inline">
                                 <div>
-                                <CheckboxGroup name='CheckboxGroup4'>
-                                    <Checkbox
-                                        value='mute-audio-ic'
-                                        label='mute-audio'
-                                        htmlId='testCheckbox7'
-                                        onClick={(event)=> {
-                                            samplefnIC(event);
-                                        }}
-                                    />
-                                    <Checkbox
-                                        value='mute-video-ic'
-                                        label='mute-video'
-                                        htmlId='testCheckbox8'
-                                        onClick={(event)=> {
-                                            samplefnIC(event);
-                                        }}
-                                    />
-                                </CheckboxGroup>
-
+                                    <FormGroup>
+                                        <FormControlLabel
+                                            label="Mute Audio"
+                                            control={
+                                                <Checkbox
+                                                    value='mute-audio-ic'
+                                                    onChange={(event)=> {
+                                                        samplefnIC(event);
+                                                    }}
+                                                />
+                                            }
+                                        />
+                                        <FormControlLabel
+                                            label="Mute Video"
+                                            control={
+                                                <Checkbox
+                                                    value='mute-video-ic'
+                                                    onChange={(event)=> {
+                                                        samplefnIC(event);
+                                                    }}
+                                                />
+                                            }
+                                        />
+                                    </FormGroup>
                                 </div>
                                 <div>
-                                <CheckboxGroup name='CheckboxGroup5'>
-                                        <Checkbox
-                                            value='settings-ic'
-                                            label='settings'
-                                            htmlId='testCheckbox9'
-                                            onClick={(event)=> {
-                                                samplefnIC(event);
-                                            }}
+                                    <FormGroup>
+                                        <FormControlLabel
+                                            label="Settings"
+                                            control={
+                                                <Checkbox
+                                                    value='settings-ic'
+                                                    onChange={(event)=> {
+                                                        samplefnIC(event);
+                                                    }}
+                                                />
+                                            }
                                         />
-                                        <Checkbox
-                                            value='join-meeting-ic'
-                                            label='join-meeting'
-                                            htmlId='testCheckbox10'
-                                            onClick={(event)=> {
-                                                samplefnIC(event);
-                                            }}
-                                        />   
-                                    </CheckboxGroup>
+                                        <FormControlLabel
+                                            label="Join Meeting"
+                                            control={
+                                                <Checkbox
+                                                    value='join-meeting-ic'
+                                                    onChange={(event)=> {
+                                                        samplefnIC(event);
+                                                    }}
+                                                />
+                                            }
+                                        />
+                                    </FormGroup>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="form-inline">
+                        <div>
+                        Theme
+                            <div className="form-inline">
+                                <div>
+                                    <FormGroup>  
+                                        <Stack direction="row" spacing={1} alignItems="center">
+                                            <Typography>Light</Typography>
+                                            <MaterialUISwitch sx={{ m: 1 }} defaultChecked checked={theme} onChange={handleChangeTheme}/>
+                                            <Typography>Dark</Typography>
+                                        </Stack>
+                                    </FormGroup>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="form-inline">
+                        <div>
+                        Draggable
+                            <div className="form-inline">
+                                <div>
+                                    <FormGroup>  
+                                        <Stack direction="row" spacing={1} alignItems="center">
+                                            <Typography>No</Typography>
+                                                <Switch
+                                                    defaultChecked
+                                                    checked={draggable}
+                                                    onChange={handleChangeDraggable}
+                                                    inputProps={{ 'aria-label': 'controlled' }}
+                                                />
+                                            <Typography>Yes</Typography>
+                                        </Stack>
+                                    </FormGroup>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        Theme
-                        <div className='form-inline'>   
-                        <Select defaultValue="Dark" onSelect={handleChangeTheme}>
-                            <SelectOption value="dark" label="Dark" />
-                            <SelectOption value="light" label="Light" />
-                        </Select>
-                        </div>
-                    </div> 
-                    <div>
-                        Draggable
-                        <Checkbox
-                            value='draggable'
-                            label='yes'
-                            htmlId='drag'
-                            checked={draggable}
-                            onChange={() => setDraggable(toggle)}
-
-                        />
-                    </div>
-                    <div>
                         Styles
                         <div className='form-inline-nowrap'>
-                            <Input
-                                name='width'
-                                label='Width'
-                                htmlId='defaultInput3'
-                                inputSize='small-5'
-                                placeholder='width'
-                                onChange={(event) => setWidth(event.target.value)}
-                            />
-                            <Input
-                                name='height'
-                                label='Height'
-                                htmlId='defaultInpu4'
-                                inputSize='small-5'
-                                placeholder='height'
-                                onChange={(event) => setHeight(event.target.value)}
-                            />
+                        <Box
+                            component="form"
+                            sx={{
+                                '& > :not(style)': { m: 1, width: '30ch' },
+                            }}
+                            noValidate
+                            autoComplete="off"
+                        >
+                        <TextField
+                            id="outlined-basic"
+                            label="Width"
+                            placeholder='Width'
+                            value={width}
+                            onChange={(event) => setWidth(event.target.value)}
+                        />
+                        <TextField
+                            id="outlined-basic"
+                            label="Height"
+                            placeholder='Height'
+                            value={height}
+                            onChange={(event) => setHeight(event.target.value)}
+                        />
+                        </Box>
                         </div>
-                    </div> 
-                    </div>):(<div></div>)}
+                    </div>
+                    </div>):(<div></div>)} </Box>
                     <div className="code">
                     <CodeBlock
                         text={code}
@@ -423,7 +561,7 @@ export default function App() {
                         style={{width:`${width}`,height:`${height}`,minWidth:"600px",minHeight:"500px"}} // Substitute with any arbitrary size or use `className`
                         accessToken={accessToken}
                         meetingDestination={destinationToken}
-                        className={`webex-meeting-widget-demo wxc-theme-${theme}`}
+                        className={`webex-meeting-widget-demo wxc-theme-${theme2}`}
                         layout={layout}
                         controls= {controls}
                     />
@@ -434,7 +572,7 @@ export default function App() {
                             style={{width:`${width}`,height:`${height}`,minWidth:"600px",minHeight:"500px"}} // Substitute with any arbitrary size or use `className`
                             accessToken={accessToken}
                             meetingDestination={destinationToken}
-                            className={`webex-meeting-widget-demo wxc-theme-${theme}`}
+                            className={`webex-meeting-widget-demo wxc-theme-${theme2}`}
                             layout={layout}
                             controls= {controls}
                         />
