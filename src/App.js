@@ -50,6 +50,7 @@ export default function App() {
     const [accessToken, setAccessToken] = useState('');
     const [destinationToken, setDestinationToken] = useState('');
     const [draggable, setDraggable] = useState(true);
+    const [disableTextbox, setDisableTextbox] = useState(false)
 
     const code =
     `<html>
@@ -127,6 +128,7 @@ export default function App() {
     function handleSubmit() {
         setAccessToken(token)
         setDestinationToken(destination)
+        setDisableTextbox(!disableTextbox)
     }
     function toggle(value) {
         console.log("draggable?")
@@ -223,7 +225,6 @@ export default function App() {
     function samplefnIC(event) {
         switch (event.target.value) {
             case 'mute-audio-ic':
-                console.log("function IC")
                 arraySetterIC(!muteAudioIC, event.target.value, setMuteAudioIC)
                 break;
 
@@ -257,6 +258,9 @@ export default function App() {
     else{
       controls = (inMeeting) => inMeeting ? ['mute-audio','mute-video','share-screen','member-roster','settings','leave-meeting'] : ['mute-audio','mute-video','settings','join-meeting'];
     }
+    function refreshPage() {
+        window.location.reload(false);
+      }
   
   return (
       <div style={{backgroundImage:`url(${background})`}}>
@@ -274,6 +278,7 @@ export default function App() {
                             placeholder='Access Token'
                             value={token}
                             onChange={(event) => setToken(event.target.value)}
+                            disabled={disableTextbox}
                         />
                         </FormControl>
                         <FormControl fullWidth sx={{ m: 1 }} variant="standard">
@@ -284,6 +289,7 @@ export default function App() {
                             placeholder='Meeting Destination'
                             value={destination}
                             onChange={(event) => setDestination(event.target.value)}
+                            disabled={disableTextbox}
                         />
                         </FormControl>
                         <Box
@@ -294,7 +300,7 @@ export default function App() {
                             noValidate
                             autoComplete="off"
                         >
-                        <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+                        <Button variant="contained" onClick ={handleSubmit}>Submit</Button>
                         {customizationState?(
                         <Button
                             variant="contained"
@@ -304,6 +310,9 @@ export default function App() {
                             variant="contained"
                             onClick={() => setCustomizationState(true)}
                         >Show Customization Options</Button>)}
+                        <Button variant="contained" onClick ={refreshPage}
+                            >Reset
+                        </Button>
                         </Box>
                     
                     </div>
@@ -338,12 +347,12 @@ export default function App() {
                     <div className='form-inline'>
                         <div>
                             
-                        InMeeting Controls
+                        When meeting is in-meeting:
                             <div className='form-inline'>
                                 <div>
                                 <FormGroup>
                                     <FormControlLabel
-                                        label="mute-audio"
+                                        label="Mute Audio"
                                         control={
                                             <Checkbox
                                                 value='mute-audio-im'
@@ -355,7 +364,7 @@ export default function App() {
                                         }
                                     />
                                     <FormControlLabel
-                                        label="mute-video"
+                                        label="Mute Video"
                                         control={
                                             <Checkbox
                                                 value='mute-video-im'
@@ -371,10 +380,11 @@ export default function App() {
                                 <div>
                                 <FormGroup>
                                     <FormControlLabel
-                                        label="settings"
+                                        label="Settings"
                                         control={
                                             <Checkbox
                                                 value='settings-im'
+                                                checked={settingsIM}
                                                 onChange={(event)=> {
                                                     samplefn(event);
                                                 }}
@@ -386,6 +396,7 @@ export default function App() {
                                         control={
                                             <Checkbox
                                                 value='share-screen-im'
+                                                checked={shareScreenIM}
                                                 onChange={(event)=> {
                                                     samplefn(event);
                                                 }}
@@ -401,6 +412,7 @@ export default function App() {
                                         control={
                                             <Checkbox
                                                 value='leave-meeting-im'
+                                                checked={leaveMeetingIM}
                                                 onChange={(event)=> {
                                                     samplefn(event);
                                                 }}
@@ -409,6 +421,7 @@ export default function App() {
                                     />
                                     <FormControlLabel
                                         label="Member Roster"
+                                        checked={memberRoasterIM}
                                         control={
                                             <Checkbox
                                                 value='member-roaster-im'
@@ -425,12 +438,13 @@ export default function App() {
                     </div>
                     <div className="form-inline">
                         <div>
-                        Interstitial Controls
+                        When meeting is not joined:
                             <div className="form-inline">
                                 <div>
                                     <FormGroup>
                                         <FormControlLabel
                                             label="Mute Audio"
+                                            checked={muteAudioIC}
                                             control={
                                                 <Checkbox
                                                     value='mute-audio-ic'
@@ -442,6 +456,7 @@ export default function App() {
                                         />
                                         <FormControlLabel
                                             label="Mute Video"
+                                            checked={muteVideoIC}
                                             control={
                                                 <Checkbox
                                                     value='mute-video-ic'
@@ -457,6 +472,7 @@ export default function App() {
                                     <FormGroup>
                                         <FormControlLabel
                                             label="Settings"
+                                            checked={settingsIC}
                                             control={
                                                 <Checkbox
                                                     value='settings-ic'
@@ -468,6 +484,7 @@ export default function App() {
                                         />
                                         <FormControlLabel
                                             label="Join Meeting"
+                                            checked={joinMeetingIC}
                                             control={
                                                 <Checkbox
                                                     value='join-meeting-ic'
