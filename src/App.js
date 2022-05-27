@@ -20,6 +20,9 @@ import './App.scss';
 import background from '../assets/webex-bg-image.webp';
 
 import {WebexMeetingsWidget} from '@webex/widgets';
+import { orange } from '@mui/material/colors';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 import '@webex/widgets/dist/css/webex-widgets.css';
 
@@ -32,18 +35,74 @@ export default function App() {
     const [destination, setDestination] = useState('');
     const [width, setWidth] = useState('');
     const [height, setHeight] = useState('');
-    const [muteAudioIM, setMuteAudioIM] = useState(false);
-    const [muteVideoIM, setMuteVideoIM] = useState(false);
-    const [settingsIM, setSettingsIM] = useState(false);
-    const [shareScreenIM, setShareScreenIM] = useState(false);
-    const [leaveMeetingIM, setLeaveMeetingIM] = useState(false);
-    const [memberRoasterIM, setMemberRoasterIM] = useState(false);
-    const [muteAudioIC, setMuteAudioIC] = useState(false);
-    const [muteVideoIC, setMuteVideoIC] = useState(false);
-    const [settingsIC, setSettingsIC] = useState(false);
-    const [joinMeetingIC, setJoinMeetingIC] = useState(false);
-    const [arrNew, setArrNew] = useState([]);
-    const [arrNew2, setArrNew2] = useState([]);
+    const [muteAudioIM, setMuteAudioIM] = useState(true);
+    const [muteVideoIM, setMuteVideoIM] = useState(true);
+    const [settingsIM, setSettingsIM] = useState(true);
+    const [shareScreenIM, setShareScreenIM] = useState(true);
+    const [leaveMeetingIM, setLeaveMeetingIM] = useState(true);
+    const [memberRoasterIM, setMemberRoasterIM] = useState(true);
+    const [muteAudioIC, setMuteAudioIC] = useState(true);
+    const [muteVideoIC, setMuteVideoIC] = useState(true);
+    const [settingsIC, setSettingsIC] = useState(true);
+    const [joinMeetingIC, setJoinMeetingIC] = useState(true);
+    const [arrNew, setArrNew] = useState([
+            {
+                checkboxName: 'mute-audio-im',
+                checkboxValue: true
+            },
+            {
+                checkboxName: "mute-video-im",
+                checkboxValue: true
+            },
+            {
+                checkboxName: "share-screen-im",
+                checkboxValue: true
+            },
+            {
+                checkboxName: "member-roaster-im",
+                checkboxValue: true
+            },
+            {
+                checkboxName: "settings-im",
+                checkboxValue: true
+            },
+            {
+                checkboxName: "leave-meeting-im",
+                checkboxValue: true
+            },
+        ]);
+    const [dispArrIM, setDispArrIM] = useState([
+        "'mute-audio'",
+        "'mute-video'",
+        "'share-screen'",
+        "'member-roaster'",
+        "'settings'",
+        "'leave-meeting'",
+    ]);
+    const [arrNew2, setArrNew2] = useState([
+        {
+            checkboxName: 'mute-audio-ic',
+            checkboxValue: true
+        },
+        {
+            checkboxName: "mute-video-ic",
+            checkboxValue: true
+        },
+        {
+            checkboxName: "settings-ic",
+            checkboxValue: true
+        },
+        {
+            checkboxName: "join-meeting-ic",
+            checkboxValue: true
+        },
+    ]);
+    const [dispArrIC, setDispArrIC] = useState([
+        "'mute-audio'",
+        "'mute-video'",
+        "'settings'",
+        "'join-meeting'",
+    ]);
     const [customizationState, setCustomizationState]= useState(false);
     const [arrNewIC, setArrNewIC] = useState([]);  
     const [arrNewIC2, setArrNewIC2] = useState([]);  
@@ -51,6 +110,19 @@ export default function App() {
     const [destinationToken, setDestinationToken] = useState('');
     const [draggable, setDraggable] = useState(true);
     const [disableTextbox, setDisableTextbox] = useState(false)
+<<<<<<< HEAD
+=======
+    const buttonTheme = createTheme({
+        palette: {
+            primary: {
+            main: orange[900],
+            },
+            secondary: {
+            main: '#f44336',
+            },
+        },
+    });
+>>>>>>> 875b3bf (bug fixes)
 
     const code =
     `<html>
@@ -61,7 +133,7 @@ export default function App() {
         </head>
 
         <body>
-            <div id="meeting-widget"></div>
+            <div id="embeddable-meetings-widget"></div>
             <script>
                 webexMeetingWidget({accessToken: "${accessToken}",
                 meetingDestination: "${destinationToken}",
@@ -70,8 +142,8 @@ export default function App() {
                 width:"${width}",
                 height:"${height}",
                 layout:"${layout}",
-                inMeetingControls:[${arrNew2}],
-                interstitialControls:[${arrNewIC2}]});
+                inMeetingControls:[${dispArrIM}],
+                interstitialControls:[${dispArrIC}]});
             </script>
         </body>
     </html>`;
@@ -160,84 +232,65 @@ export default function App() {
         setLayout(selectedLayout);
       };
 
-    function arraySetter(checkboxValue, checkboxName, setFn) {
-        let meetingControls1 = arrNew
-        let meetingControls2= arrNew2
-        let checkboxName2 = "'"+checkboxName.substring(0, checkboxName.length - 3)+"'";
-        let checkboxName1 = checkboxName.substring(0, checkboxName.length - 3);
-        if(checkboxValue) {
-            meetingControls1.push(checkboxName1)
-            meetingControls2.push(checkboxName2)
-        } else {
-            meetingControls1 = meetingControls1.filter(val => val != (checkboxName1))
-            meetingControls2 = meetingControls2.filter(val => val != (checkboxName2))
-        }
-        setArrNew(meetingControls1)
-        setArrNew2(meetingControls2)
-        setFn((checkboxValue) => !checkboxValue)
-    }
+    function arraySetter(checkboxNamee, checkboxVal, setFn,setDisp,arr,setArr) {
+        let meetingControls = arr
+        let tempArr = []
+        meetingControls = meetingControls.map(obj => obj.checkboxName == checkboxNamee ? {...obj, checkboxValue:!checkboxVal} : obj);
 
-    function arraySetterIC(checkboxValue, checkboxName, setFnIC) {
-        let interstitialControls1 = arrNewIC
-        let interstitialControls2 = arrNewIC2
-        let checkboxName2 = "'"+checkboxName.substring(0, checkboxName.length - 3)+"'";
-        let checkboxName1 = checkboxName.substring(0, checkboxName.length - 3);
-        if(checkboxValue) {
-            interstitialControls1.push(checkboxName1)
-            interstitialControls2.push(checkboxName2)
-        } else {
-            interstitialControls1 = interstitialControls1.filter(val => val != (checkboxName1))
-            interstitialControls2 = interstitialControls2.filter(val => val != (checkboxName2))
+        for(let i = 0; i < meetingControls.length; i++){
+            if (meetingControls[i].checkboxValue == true){
+                let boxName = meetingControls[i].checkboxName;
+                tempArr.push( "'"+boxName.substring(0, boxName.length - 3)+"'")
+            }
         }
-        setArrNewIC(interstitialControls1)
-        setArrNewIC2(interstitialControls2)
-        setFnIC((checkboxValue) => !checkboxValue)
-    }
+        setArr(meetingControls)
+        setFn(!checkboxVal)
+        setDisp(tempArr)
+    }  
 
     function samplefn(event) {
         switch (event.target.value) {
             case 'mute-audio-im':
-                arraySetter(!muteAudioIM, event.target.value, setMuteAudioIM)
+                arraySetter(event.target.value,muteAudioIM, setMuteAudioIM, setDispArrIM, arrNew,setArrNew)
                 break;
 
             case 'mute-video-im':
-                arraySetter(!muteVideoIM, event.target.value, setMuteVideoIM)
+                arraySetter(event.target.value,muteVideoIM, setMuteVideoIM,setDispArrIM,arrNew,setArrNew)
                 break;
             
             case 'settings-im':
-                arraySetter(!settingsIM, event.target.value, setSettingsIM)
+                arraySetter(event.target.value,settingsIM, setSettingsIM,setDispArrIM,arrNew,setArrNew)
                 break;
             
             case 'share-screen-im':
-                arraySetter(!shareScreenIM, event.target.value, setShareScreenIM)
+                arraySetter(event.target.value,shareScreenIM, setShareScreenIM,setDispArrIM,arrNew,setArrNew)
                 break;
             
             case 'leave-meeting-im':
-                arraySetter(!leaveMeetingIM, event.target.value, setLeaveMeetingIM)
+                arraySetter(event.target.value,leaveMeetingIM, setLeaveMeetingIM,setDispArrIM,arrNew,setArrNew)
                 break;
 
             case 'member-roaster-im':
-                arraySetter(!memberRoasterIM, event.target.value, setMemberRoasterIM)
+                arraySetter(event.target.value,memberRoasterIM, setMemberRoasterIM,setDispArrIM,arrNew,setArrNew)
                 break;
-        }
-    };
-
-    function samplefnIC(event) {
-        switch (event.target.value) {
             case 'mute-audio-ic':
+<<<<<<< HEAD
                 arraySetterIC(!muteAudioIC, event.target.value, setMuteAudioIC)
+=======
+                arraySetter(event.target.value, muteAudioIC, setMuteAudioIC, setDispArrIC, arrNew2,setArrNew2)
+>>>>>>> 875b3bf (bug fixes)
                 break;
 
             case 'mute-video-ic':
-                arraySetterIC(!muteVideoIC, event.target.value, setMuteVideoIC)
+                arraySetter(event.target.value, muteVideoIC, setMuteVideoIC, setDispArrIC, arrNew2, setArrNew2)
                 break;
             
             case 'settings-ic':
-                arraySetterIC(!settingsIC, event.target.value, setSettingsIC)
+                arraySetter(event.target.value, settingsIC, setSettingsIC, setDispArrIC, arrNew2, setArrNew2)
                 break;
             
             case 'join-meeting-ic':
-                arraySetterIC(!joinMeetingIC, event.target.value, setJoinMeetingIC)
+                arraySetter(event.target.value, joinMeetingIC, setJoinMeetingIC, setDispArrIC, arrNew2, setArrNew2)
                 break;
         }
     };
@@ -268,8 +321,10 @@ export default function App() {
           <div className='outerDiv'>
                 <div className='flex-child'>
                     <div>
-                        {/* {console.log( "IM -> " + arrNew)}
-                        {console.log( "IC -> " + arrNewIC)} */}
+                        {/* {console.log( "IM -> " + arrNew)} */}
+                        {/* {console.log(arrNew)}
+                        {console.log(arrNew2)} */}
+                        {/* {console.log( "IC -> " + arrNew2)} */}
                         <FormControl fullWidth sx={{ m: 1 }} variant="standard">
                         <TextField
                             required
@@ -300,7 +355,15 @@ export default function App() {
                             noValidate
                             autoComplete="off"
                         >
+<<<<<<< HEAD
                         <Button variant="contained" onClick ={handleSubmit}>Submit</Button>
+=======
+                        <Button 
+                        variant="contained" 
+                        onClick ={handleSubmit}
+                        disabled = {disableTextbox}
+                        >Submit</Button>
+>>>>>>> 875b3bf (bug fixes)
                         {customizationState?(
                         <Button
                             variant="contained"
@@ -310,9 +373,20 @@ export default function App() {
                             variant="contained"
                             onClick={() => setCustomizationState(true)}
                         >Show Customization Options</Button>)}
+<<<<<<< HEAD
                         <Button variant="contained" onClick ={refreshPage}
                             >Reset
                         </Button>
+=======
+                        {/* <Button variant="contained" onClick ={refreshPage}
+                            >Reset
+                        </Button> */}
+                        <ThemeProvider theme={buttonTheme}>
+                        <Button variant="contained" color='secondary' onClick ={refreshPage}
+                            >Reset
+                        </Button>
+                        </ThemeProvider>
+>>>>>>> 875b3bf (bug fixes)
                         </Box>
                     
                     </div>
@@ -449,7 +523,7 @@ export default function App() {
                                                 <Checkbox
                                                     value='mute-audio-ic'
                                                     onChange={(event)=> {
-                                                        samplefnIC(event);
+                                                        samplefn(event);
                                                     }}
                                                 />
                                             }
@@ -461,7 +535,7 @@ export default function App() {
                                                 <Checkbox
                                                     value='mute-video-ic'
                                                     onChange={(event)=> {
-                                                        samplefnIC(event);
+                                                        samplefn(event);
                                                     }}
                                                 />
                                             }
@@ -477,7 +551,7 @@ export default function App() {
                                                 <Checkbox
                                                     value='settings-ic'
                                                     onChange={(event)=> {
-                                                        samplefnIC(event);
+                                                        samplefn(event);
                                                     }}
                                                 />
                                             }
@@ -489,7 +563,7 @@ export default function App() {
                                                 <Checkbox
                                                     value='join-meeting-ic'
                                                     onChange={(event)=> {
-                                                        samplefnIC(event);
+                                                        samplefn(event);
                                                     }}
                                                 />
                                             }
@@ -524,6 +598,7 @@ export default function App() {
                                         <Stack direction="row" spacing={1} alignItems="center">
                                             <Typography>No</Typography>
                                                 <Switch
+                                                    disabled={disableTextbox}
                                                     defaultChecked
                                                     checked={draggable}
                                                     onChange={handleChangeDraggable}
