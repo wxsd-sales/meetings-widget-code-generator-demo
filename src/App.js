@@ -110,8 +110,6 @@ export default function App() {
     const [destinationToken, setDestinationToken] = useState('');
     const [draggable, setDraggable] = useState(true);
     const [disableTextbox, setDisableTextbox] = useState(false)
-<<<<<<< HEAD
-=======
     const buttonTheme = createTheme({
         palette: {
             primary: {
@@ -122,7 +120,6 @@ export default function App() {
             },
         },
     });
->>>>>>> 875b3bf (bug fixes)
 
     const code =
     `<html>
@@ -274,11 +271,7 @@ export default function App() {
                 arraySetter(event.target.value,memberRoasterIM, setMemberRoasterIM,setDispArrIM,arrNew,setArrNew)
                 break;
             case 'mute-audio-ic':
-<<<<<<< HEAD
-                arraySetterIC(!muteAudioIC, event.target.value, setMuteAudioIC)
-=======
                 arraySetter(event.target.value, muteAudioIC, setMuteAudioIC, setDispArrIC, arrNew2,setArrNew2)
->>>>>>> 875b3bf (bug fixes)
                 break;
 
             case 'mute-video-ic':
@@ -355,15 +348,11 @@ export default function App() {
                             noValidate
                             autoComplete="off"
                         >
-<<<<<<< HEAD
-                        <Button variant="contained" onClick ={handleSubmit}>Submit</Button>
-=======
                         <Button 
                         variant="contained" 
                         onClick ={handleSubmit}
                         disabled = {disableTextbox}
                         >Submit</Button>
->>>>>>> 875b3bf (bug fixes)
                         {customizationState?(
                         <Button
                             variant="contained"
@@ -373,11 +362,6 @@ export default function App() {
                             variant="contained"
                             onClick={() => setCustomizationState(true)}
                         >Show Customization Options</Button>)}
-<<<<<<< HEAD
-                        <Button variant="contained" onClick ={refreshPage}
-                            >Reset
-                        </Button>
-=======
                         {/* <Button variant="contained" onClick ={refreshPage}
                             >Reset
                         </Button> */}
@@ -386,7 +370,6 @@ export default function App() {
                             >Reset
                         </Button>
                         </ThemeProvider>
->>>>>>> 875b3bf (bug fixes)
                         </Box>
                     
                     </div>
