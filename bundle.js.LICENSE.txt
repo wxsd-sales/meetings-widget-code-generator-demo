@@ -422,6 +422,14 @@ PERFORMANCE OF THIS SOFTWARE.
  */
 
 /**
+ * @mui/styled-engine v5.11.8
+ *
+ * @license MIT
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
  * Checks if an event is supported in the current execution environment.
  *
  * NOTE: This will not work correctly for non-generic events such as `change`,
@@ -441,12 +449,6 @@ PERFORMANCE OF THIS SOFTWARE.
  * MIT Licensed
  * https://github.com/jayphelps/core-decorators.js
  * @license
- */
-
-/** @license MUI v5.8.0
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
  */
 
 /** @license React v0.20.2
