@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmeetings_widget_code_generator_demo=self.webpackChunkmeetings_widget_code_generator_demo||[]).push([[6495],{14970:e=>{function t(e){e.languages.ini={comment:/^[ \t]*[;#].*$/m,selector:/^[ \t]*\[.*?\]/m,constant:/^[ \t]*[^\s=]+?(?=[ \t]*=)/m,"attr-value":{pattern:/=.*/,inside:{punctuation:/^[=]/}}}}e.exports=t,t.displayName="ini",t.aliases=[]}}]);
+//# sourceMappingURL=6495.bundle.js.map

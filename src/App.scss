@@ -1,0 +1,118 @@
+.content {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+
+  overflow: auto;
+}
+
+.webex-form {
+  margin: 1rem;
+}
+
+.webex-section {
+  background-color: white;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0.0625rem 0.125rem 0 #c6c7ca;
+  border-radius: 0.25rem;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.fluid-height {
+  flex: 1;
+}
+
+.App-header {
+  background-image: url(../assets/webex-bg-image.png);
+  background-size: cover;
+  background-position: top;
+  min-height: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.outerDiv {
+  font-size: 35px;
+  position: absolute;
+  width: 95%;
+  height: 95%;
+  z-index: 15;
+  top: 3%;
+  left: 3%;
+  border-radius: 30px;
+  overflow: auto;
+  padding: 2%;
+  background: black;
+}
+
+.flex-child {
+  float: left;
+  width: 48%;
+  height: 96%;
+  background: rgb(231, 229, 229);
+  margin: 1%;
+  padding: 2%;
+  overflow: auto;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.form-inline-nowrap {
+  display: flex;
+  align-items: center;
+  flex-flow: row;
+}
+
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+.code {
+  display: none;
+  margin: 2%;
+
+  @media (min-height: 38rem) {
+    display: block;
+    height: 15rem;
+  }
+
+  @media (min-height: 55rem) {
+    display: block;
+    height: 30rem;
+  }
+
+  overflow-y: auto;
+
+  code {
+    width: 100%;
+    font-size: 0.75rem !important;
+    background-color: lightgrey;
+  }
+}
+
+.button {
+  border: none;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 15px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.WebexMeeting {
+  max-width:none;
+}
