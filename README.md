@@ -1,7 +1,13 @@
 # Meetings Widget Code Generator
 
+Welcome to our WXSD DEMO Repo! <!-- Keep this here --> 
+
 This app generates an HTML code for the user to embed the meetings widget into their application. It allows users to customize the meeting controls, layout, styles and other properties that appear while in the meeting and before joining the meeting.
 
+
+<!-- Keep the following here -->  
+ *_Everything included is for demo and Proof of Concept purposes only. Your use of the site is solely at your own risk. This site may contain links to third party content, which we do not warrant, endorse, or assume liability for. These demos are for Cisco Webex usecases, but are not Official Cisco Webex Branded demos._
+ 
 ## Overview
 
 Meetings widget code generator uses ReactJS for the front-end. This app uses the 'react-code-blocks' library to generate an HTML code based on the selected customization option. Once the user submits the access token (can be obtained from [here](https://developer.webex.com/docs/getting-started)) and the destination token, the meeting is rendered by the side with default controls for preview.
