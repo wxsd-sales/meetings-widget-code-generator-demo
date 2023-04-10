@@ -22,7 +22,8 @@ The different customization options include,
 The user will be able to obtain an HTML code inside the code generator block for the selected options which the user can embed in their application.
 
 ## Video Demo
-[![Meetings Widget Code Generator Demo](https://img.youtube.com/vi/iVx6cN02sNM/sddefault.jpg)](https://www.youtube.com/embed/iVx6cN02sNM , "Meeings Widget Code Generator")
+[![Meetings Widget Code Generator Demo](https://img.youtube.com/vi/iVx6cN02sNM/sddefault.jpg)](https://www.youtube.com/watch?v=iVx6cN02sNM, "Meeings Widget Code Generator")
+
 
 ## Description
 
