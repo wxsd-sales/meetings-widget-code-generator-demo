@@ -4,9 +4,24 @@ Welcome to our WXSD DEMO Repo! <!-- Keep this here -->
 
 This app generates an HTML code for the user to embed the meetings widget into their application. It allows users to customize the meeting controls, layout, styles and other properties that appear while in the meeting and before joining the meeting.
 
+[![Meetings Widget Code Generator Demo](https://img.youtube.com/vi/iVx6cN02sNM/sddefault.jpg)](https://app.vidcast.io/share/8abd7f34-b634-4a40-aeb0-dd97e4ff3523, "Meeings Widget Code Generator")
 
-<!-- Keep the following here -->  
- *_Everything included is for demo and Proof of Concept purposes only. Your use of the site is solely at your own risk. This site may contain links to third party content, which we do not warrant, endorse, or assume liability for. These demos are for Cisco Webex usecases, but are not Official Cisco Webex Branded demos._
+## Table of Contents
+
+<!-- ⛔️ MD-MAGIC-EXAMPLE:START (TOC:collapse=true&collapseText=Click to expand) -->
+<details>
+<summary>(click to expand)</summary>
+    
+  * [Overview](#overview)
+  * [Description](#description)
+  * [Setup](#setup)
+  * [Demo](#demo)
+  * [License](#license)  
+  * [Disclaimer](#disclaimer)
+  * [Questions](#questions)
+
+</details>
+<!-- ⛔️ MD-MAGIC-EXAMPLE:END -->
  
 ## Overview
 
@@ -20,9 +35,6 @@ The different customization options include,
 * Styles (width and height options)
 
 The user will be able to obtain an HTML code inside the code generator block for the selected options which the user can embed in their application.
-
-## Video Demo
-[![Meetings Widget Code Generator Demo](https://img.youtube.com/vi/iVx6cN02sNM/sddefault.jpg)](https://www.youtube.com/watch?v=iVx6cN02sNM, "Meeings Widget Code Generator")
 
 
 ## Description
@@ -72,6 +84,11 @@ This property allows the user to specify the height and width of the meetings wi
 
 ## Setup
 
+### Prerequisites & Dependencies: 
+
+- Developed and tested on MacOs Ventura(13.2.1) and Windows 11
+- React version >17.0.2 (recommended)
+
 **1.** Clone the project
 ```
 git clone https://github.com/wxsd-sales/meetings-widget-code-generator-demo.git
@@ -86,12 +103,25 @@ npm install
 ```
 npm start
 ```
+## Demo
+
+<!-- Insert link to the website below (if deployed). -->
+Check out our live demo, available [here](<https://app.vidcast.io/share/8abd7f34-b634-4a40-aeb0-dd97e4ff3523>)!
+
+<!-- Keep the following statement -->
+*For more demos & PoCs like this, check out our [Webex Labs site](https://collabtoolbox.cisco.com/webex-labs).
 
 ## License
+<!-- MAKE SURE an MIT license is included in your Repository. If another license is needed, verify with management. This is for legal reasons.--> 
 
-Distributed under the MIT License. See LICENSE for more information.
+<!-- Keep the following statement -->
+All contents are licensed under the MIT license. Please see [license](LICENSE) for details.
 
 
-## Support
+## Disclaimer
+<!-- Keep the following here -->  
+ Everything included is for demo and Proof of Concept purposes only. Use of the site is solely at your own risk. This site may contain links to third party content, which we do not warrant, endorse, or assume liability for. These demos are for Cisco Webex usecases, but are not Official Cisco Webex Branded demos.
 
-Please reach out to the WXSD team at [wxsd@external.cisco.com](mailto:wxsd@external.cisco.com?cc=<nivjayak>@cisco.com&subject=meetings-widget-code-generator-demo).
+
+## Questions
+Please contact the WXSD team at [wxsd@external.cisco.com](mailto:wxsd@external.cisco.com?subject=RepoName) for questions. Or, if you're a Cisco internal employee, reach out to us on the Webex App via our bot (globalexpert@webex.bot). In the "Engagement Type" field, choose the "API/SDK Proof of Concept Integration Development" option to make sure you reach our team. 
